@@ -1,424 +1,684 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>eternal.gg — Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:#08080a;font-family:'Inter',sans-serif;color:#fff;min-height:100vh;overflow-x:hidden;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eternal.gg — Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{background:#08080a;font-family:'Inter',sans-serif;color:#fff;min-height:100vh;overflow-x:hidden;}
 
-nav{position:sticky;top:0;z-index:100;background:rgba(8,8,10,0.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.05);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px;}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.logo-mark{width:30px;height:30px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;}
-.logo-mark svg{width:16px;height:16px;}
-.logo-name{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.3px;}
-.logo-name span{color:rgba(255,255,255,0.35);}
-.nav-links{display:flex;gap:2px;}
-.nav-links a{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;font-weight:500;padding:7px 13px;border-radius:8px;transition:all .15s;}
-.nav-links a i{font-size:15px;}
-.nav-links a:hover{color:#fff;background:rgba(255,255,255,0.07);}
-.nav-links a.active{color:#fff;}
-.nav-right{display:flex;align-items:center;gap:8px;}
-.nav-search{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:7px 14px;font-size:12.5px;color:rgba(255,255,255,0.25);cursor:pointer;transition:all .15s;}
-.nav-search:hover{border-color:rgba(255,255,255,0.12);}
-.kbd{background:rgba(255,255,255,0.07);border-radius:4px;padding:1px 5px;font-size:10px;color:rgba(255,255,255,0.3);}
-.cart-btn{width:36px;height:36px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;}
-.cart-btn:hover{background:rgba(255,255,255,0.08);}
-.cart-btn i{font-size:17px;color:rgba(255,255,255,0.5);}
+        /* NAV */
+        nav{position:sticky;top:0;z-index:100;background:rgba(8,8,10,0.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.05);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px;}
+        .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+        .logo-mark{width:30px;height:30px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;}
+        .logo-mark svg{width:16px;height:16px;}
+        .logo-name{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.3px;}
+        .logo-name span{color:rgba(255,255,255,0.35);}
+        .nav-links{display:flex;gap:2px;}
+        .nav-links a{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;font-weight:500;padding:7px 13px;border-radius:8px;transition:all .15s;}
+        .nav-links a i{font-size:15px;}
+        .nav-links a:hover{color:#fff;background:rgba(255,255,255,0.07);}
+        .nav-links a.active{color:#fff;}
+        .nav-right{display:flex;align-items:center;gap:8px;}
+        .nav-search{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:7px 14px;font-size:12.5px;color:rgba(255,255,255,0.25);cursor:pointer;transition:all .15s;}
+        .nav-search:hover{border-color:rgba(255,255,255,0.12);}
+        .kbd{background:rgba(255,255,255,0.07);border-radius:4px;padding:1px 5px;font-size:10px;color:rgba(255,255,255,0.3);}
+        .cart-btn{position:relative;width:36px;height:36px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;}
+        .cart-btn:hover{background:rgba(255,255,255,0.08);}
+        .cart-btn i{font-size:17px;color:rgba(255,255,255,0.5);}
 
-.hero{position:relative;margin:24px 32px 0;border-radius:20px;overflow:hidden;padding:40px 44px;background:#0d0d10;border:1px solid rgba(255,255,255,0.06);}
-.hero-noise{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;}
-.hero-line{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);}
-.hero-dot{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.04) 0%,transparent 70%);top:-100px;right:-60px;pointer-events:none;}
-.hero-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;}
-.hero-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.09);border-radius:20px;padding:4px 12px 4px 8px;font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:.3px;margin-bottom:16px;}
-.chip-dot{width:6px;height:6px;background:#22c55e;border-radius:50%;box-shadow:0 0 6px #22c55e;}
-.hero-title{font-size:34px;font-weight:900;letter-spacing:-.8px;line-height:1.1;margin-bottom:10px;}
-.hero-title em{font-style:normal;color:rgba(255,255,255,0.35);}
-.hero-sub{font-size:13.5px;color:rgba(255,255,255,0.35);line-height:1.6;display:flex;align-items:center;gap:6px;}
-.hero-sub i{font-size:14px;}
-.hero-right{display:flex;gap:14px;}
-.hero-stat{text-align:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:16px 20px;}
-.hero-stat i{font-size:20px;color:rgba(255,255,255,0.25);margin-bottom:6px;}
-.hero-stat-num{font-size:20px;font-weight:800;letter-spacing:-.5px;}
-.hero-stat-lbl{font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px;font-weight:500;}
+        /* HERO */
+        .hero{position:relative;margin:24px 32px 0;border-radius:20px;overflow:hidden;padding:40px 44px;background:#0d0d10;border:1px solid rgba(255,255,255,0.06);}
+        .hero-noise{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px;}
+        .hero-line{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);}
+        .hero-dot{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.04) 0%,transparent 70%);top:-100px;right:-60px;pointer-events:none;}
+        .hero-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;}
+        .hero-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.09);border-radius:20px;padding:4px 12px 4px 8px;font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:.3px;margin-bottom:16px;}
+        .chip-dot{width:6px;height:6px;background:#22c55e;border-radius:50%;box-shadow:0 0 6px #22c55e;}
+        .hero-title{font-size:34px;font-weight:900;letter-spacing:-.8px;line-height:1.1;margin-bottom:10px;}
+        .hero-title em{font-style:normal;color:rgba(255,255,255,0.35);}
+        .hero-sub{font-size:13.5px;color:rgba(255,255,255,0.35);line-height:1.6;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+        .hero-right{display:flex;gap:14px;}
+        .hero-stat{text-align:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:16px 20px;}
+        .hero-stat i{font-size:20px;color:rgba(255,255,255,0.25);margin-bottom:6px;display:block;}
+        .hero-stat-num{font-size:20px;font-weight:800;letter-spacing:-.5px;}
+        .hero-stat-lbl{font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px;font-weight:500;}
 
-.store{padding:28px 32px 48px;}
-.store-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
-.store-left{display:flex;align-items:center;gap:10px;}
-.count-pill{font-size:11.5px;color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.05);border-radius:5px;padding:2px 9px;font-weight:500;}
-.tabs{display:flex;gap:5px;}
-.tab{display:flex;align-items:center;gap:5px;padding:5px 13px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:all .15s;}
-.tab i{font-size:13px;}
-.tab.on{background:rgba(255,255,255,0.08);color:#fff;border-color:rgba(255,255,255,0.1);}
-.tab:not(.on){color:rgba(255,255,255,0.35);border-color:rgba(255,255,255,0.06);}
-.tab:not(.on):hover{color:rgba(255,255,255,0.6);}
-.sort-btn{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.35);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:7px 13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;}
-.sort-btn i{font-size:14px;}
+        /* STORE */
+        .store{padding:28px 32px 48px;}
+        .store-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
+        .store-left{display:flex;align-items:center;gap:10px;}
+        .count-pill{font-size:11.5px;color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.05);border-radius:5px;padding:2px 9px;font-weight:500;}
+        .tabs{display:flex;gap:5px;}
+        .tab{display:flex;align-items:center;gap:5px;padding:5px 13px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:all .15s;user-select:none;}
+        .tab i{font-size:13px;}
+        .tab.on{background:rgba(255,255,255,0.08);color:#fff;border-color:rgba(255,255,255,0.1);}
+        .tab:not(.on){color:rgba(255,255,255,0.35);border-color:rgba(255,255,255,0.06);}
+        .tab:not(.on):hover{color:rgba(255,255,255,0.6);}
+        .sort-btn{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.35);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:9px;padding:7px 13px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;}
+        .sort-btn:hover{color:rgba(255,255,255,.6);}
+        .sort-btn i{font-size:14px;}
 
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:760px;}
+        /* GRID */
+        .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:760px;}
+        .card{background:#0d0d10;border:1px solid rgba(255,255,255,0.07);border-radius:16px;overflow:hidden;transition:all .2s;cursor:pointer;}
+        .card:hover{border-color:rgba(255,255,255,0.14);transform:translateY(-2px);}
+        .card.hi{border-color:rgba(255,255,255,0.12);}
+        .card.hi:hover{border-color:rgba(255,255,255,0.22);}
+        .card-img{position:relative;height:180px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+        .img-premium{background:linear-gradient(160deg,#0d0d10 0%,#1a1020 60%,#0f0d18 100%);}
+        .img-beta{background:linear-gradient(160deg,#0a0d14 0%,#0d1525 60%,#090d18 100%);}
+        .blob{position:absolute;border-radius:50%;filter:blur(50px);animation:bfloat 7s ease-in-out infinite;}
+        .b1{width:160px;height:160px;top:-40px;left:-40px;}
+        .b2{width:130px;height:130px;bottom:-30px;right:-30px;animation-delay:-3.5s;}
+        .bp1{background:rgba(255,255,255,0.07);}
+        .bp2{background:rgba(180,160,255,0.06);}
+        .bb1{background:rgba(100,180,255,0.07);}
+        .bb2{background:rgba(80,220,255,0.05);}
+        @keyframes bfloat{0%,100%{transform:scale(1) translateY(0);}50%{transform:scale(1.1) translateY(-16px);}}
+        .card-ico{position:relative;z-index:2;width:80px;height:80px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:22px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);transition:transform .2s;overflow:hidden;}
+        .card:hover .card-ico{transform:scale(1.06);}
+        .badge-tl,.badge-tr{position:absolute;top:12px;font-size:10px;font-weight:700;letter-spacing:.4px;padding:3px 10px;z-index:3;}
+        .badge-tl{left:12px;display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.08);border-radius:6px;}
+        .badge-tl i{font-size:11px;}
+        .badge-tr{right:12px;border-radius:20px;}
+        .b-premium{background:rgba(255,255,255,0.9);color:#08080a;}
+        .b-beta{background:#1d4ed8;color:#fff;}
+        .status-tag{position:absolute;bottom:11px;right:12px;display:flex;align-items:center;gap:5px;background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:3px 10px;font-size:10px;color:rgba(255,255,255,0.4);z-index:3;backdrop-filter:blur(4px);}
+        .green-dot{width:5px;height:5px;background:#22c55e;border-radius:50%;}
+        .card-body{padding:18px 18px 20px;}
+        .card-name{font-size:16px;font-weight:800;letter-spacing:-.3px;margin-bottom:8px;}
+        .meta{display:flex;align-items:center;gap:7px;margin-bottom:14px;}
+        .stars{color:#f59e0b;font-size:11px;letter-spacing:2px;}
+        .score{font-size:12px;font-weight:600;color:rgba(255,255,255,0.6);}
+        .dot{color:rgba(255,255,255,0.12);}
+        .sold{font-size:11.5px;color:rgba(255,255,255,0.25);display:flex;align-items:center;gap:4px;}
+        .feats{display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
+        .feat{display:flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(255,255,255,0.55);}
+        .feat-ico{font-size:14px;color:rgba(255,255,255,0.2);flex-shrink:0;}
+        .ftag{margin-left:auto;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;}
+        .ft-w{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.08);}
+        .ft-g{background:rgba(34,197,94,0.1);color:#4ade80;border:1px solid rgba(74,222,128,0.15);}
+        .ft-b{background:rgba(59,130,246,0.1);color:#60a5fa;border:1px solid rgba(59,130,246,0.2);}
+        .sep{height:1px;background:rgba(255,255,255,0.05);margin:0 0 14px;}
+        .price-row{display:flex;align-items:baseline;gap:5px;margin-bottom:14px;}
+        .price{font-size:28px;font-weight:900;letter-spacing:-.8px;}
+        .per{font-size:12px;color:rgba(255,255,255,0.25);}
+        .btns{display:flex;gap:7px;}
+        .btn-ghost{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);color:rgba(255,255,255,0.55);font-size:12.5px;font-weight:600;padding:10px;border-radius:10px;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif;}
+        .btn-ghost i{font-size:15px;}
+        .btn-ghost:hover{background:rgba(255,255,255,0.09);color:rgba(255,255,255,.8);}
+        .btn-main{flex:1.4;display:flex;align-items:center;justify-content:center;gap:7px;background:#fff;color:#08080a;font-size:12.5px;font-weight:700;padding:10px;border-radius:10px;cursor:pointer;border:none;transition:all .15s;font-family:'Inter',sans-serif;}
+        .btn-main i{font-size:15px;}
+        .btn-main:hover{background:rgba(255,255,255,.88);}
+        .btn-main.blue{background:#2563eb;color:#fff;}
+        .btn-main.blue:hover{background:#1d4ed8;}
 
-.card{background:#0d0d10;border:1px solid rgba(255,255,255,0.07);border-radius:16px;overflow:hidden;transition:all .2s;cursor:pointer;}
-.card:hover{border-color:rgba(255,255,255,0.14);transform:translateY(-2px);}
-.card.hi{border-color:rgba(255,255,255,0.12);}
-.card.hi:hover{border-color:rgba(255,255,255,0.22);}
+        /* SUPPORT */
+        .support-section{margin:0 32px 32px;border-radius:16px;background:#0d0d10;border:1px solid rgba(255,255,255,0.06);overflow:hidden;}
+        .support-inner{padding:28px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+        .support-text{display:flex;align-items:center;gap:14px;}
+        .support-icon{width:44px;height:44px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .support-icon i{font-size:22px;color:rgba(255,255,255,0.4);}
+        .support-text h3{font-size:15px;font-weight:700;margin-bottom:3px;}
+        .support-text p{font-size:12.5px;color:rgba(255,255,255,0.3);}
+        .support-btns{display:flex;gap:9px;flex-wrap:wrap;}
+        .s-btn{display:flex;align-items:center;gap:8px;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:all .15s;}
+        .s-btn i{font-size:17px;}
+        .s-btn:hover{opacity:.85;transform:translateY(-1px);}
+        .tg{background:#229ED9;color:#fff;}
+        .dc{background:#5865F2;color:#fff;}
 
-.card-img{position:relative;height:180px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.img-premium{background:linear-gradient(160deg,#0d0d10 0%,#1a1020 60%,#0f0d18 100%);}
-.img-beta{background:linear-gradient(160deg,#0a0d14 0%,#0d1525 60%,#090d18 100%);}
+        /* TRUST */
+        .trust{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04);margin:0 32px;padding:14px 0;}
+        .ti{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.22);padding:0 24px;border-right:1px solid rgba(255,255,255,0.05);white-space:nowrap;}
+        .ti:last-child{border-right:none;}
+        .ti i{font-size:15px;color:rgba(255,255,255,0.18);}
 
-.blob{position:absolute;border-radius:50%;filter:blur(50px);animation:bfloat 7s ease-in-out infinite;}
-.b1{width:160px;height:160px;top:-40px;left:-40px;}
-.b2{width:130px;height:130px;bottom:-30px;right:-30px;animation-delay:-3.5s;}
-.bp1{background:rgba(255,255,255,0.07);}
-.bp2{background:rgba(180,160,255,0.06);}
-.bb1{background:rgba(100,180,255,0.07);}
-.bb2{background:rgba(80,220,255,0.05);}
-@keyframes bfloat{0%,100%{transform:scale(1) translateY(0);}50%{transform:scale(1.1) translateY(-16px);}}
+        /* FOOTER */
+        footer{padding:32px 32px 0;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;border-top:1px solid rgba(255,255,255,0.04);margin-top:32px;}
+        .f-logo{font-size:15px;font-weight:800;letter-spacing:-.2px;margin-bottom:8px;}
+        .f-logo span{color:rgba(255,255,255,0.3);}
+        .f-tag{font-size:12px;color:rgba(255,255,255,0.22);line-height:1.7;}
+        .f-col h4{font-size:11px;font-weight:700;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
+        .f-col a{display:flex;align-items:center;gap:7px;font-size:12.5px;color:rgba(255,255,255,0.25);text-decoration:none;margin-bottom:9px;transition:color .15s;}
+        .f-col a i{font-size:14px;color:rgba(255,255,255,0.15);}
+        .f-col a:hover{color:rgba(255,255,255,.6);}
+        .footer-btm{text-align:center;font-size:11px;color:rgba(255,255,255,0.15);padding:20px 32px 24px;margin-top:28px;border-top:1px solid rgba(255,255,255,0.04);}
 
-.card-ico{position:relative;z-index:2;width:80px;height:80px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:22px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);transition:transform .2s;overflow:hidden;}
-.card:hover .card-ico{transform:scale(1.06);}
-
-.badge-tl,.badge-tr{position:absolute;top:12px;font-size:10px;font-weight:700;letter-spacing:.4px;padding:3px 10px;z-index:3;}
-.badge-tl{left:12px;display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.08);border-radius:6px;}
-.badge-tl i{font-size:11px;}
-.badge-tr{right:12px;border-radius:20px;}
-.b-premium{background:rgba(255,255,255,0.9);color:#08080a;}
-.b-beta{background:#1d4ed8;color:#fff;}
-
-.status-tag{position:absolute;bottom:11px;right:12px;display:flex;align-items:center;gap:5px;background:rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:3px 10px;font-size:10px;color:rgba(255,255,255,0.4);z-index:3;backdrop-filter:blur(4px);}
-.green-dot{width:5px;height:5px;background:#22c55e;border-radius:50%;}
-
-.card-body{padding:18px 18px 20px;}
-.card-name{font-size:16px;font-weight:800;letter-spacing:-.3px;margin-bottom:5px;}
-.card-desc{font-size:12.5px;color:rgba(255,255,255,0.35);line-height:1.6;margin-bottom:13px;min-height:40px;}
-.meta{display:flex;align-items:center;gap:7px;margin-bottom:15px;}
-.stars{color:#f59e0b;font-size:11px;letter-spacing:2px;}
-.score{font-size:12px;font-weight:600;color:rgba(255,255,255,0.6);}
-.dot{color:rgba(255,255,255,0.12);}
-.sold{font-size:11.5px;color:rgba(255,255,255,0.25);display:flex;align-items:center;gap:4px;}
-.sold i{font-size:12px;}
-
-.feats{display:flex;flex-direction:column;gap:7px;margin-bottom:17px;}
-.feat{display:flex;align-items:center;gap:8px;font-size:12.5px;color:rgba(255,255,255,0.55);}
-.fcheck{width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);}
-.fcheck i{font-size:10px;color:rgba(255,255,255,0.5);}
-.feat-ico{font-size:14px;color:rgba(255,255,255,0.2);flex-shrink:0;}
-.ftag{margin-left:auto;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;}
-.ft-w{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.08);}
-.ft-g{background:rgba(34,197,94,0.1);color:#4ade80;border:1px solid rgba(74,222,128,0.15);}
-.ft-b{background:rgba(59,130,246,0.1);color:#60a5fa;border:1px solid rgba(59,130,246,0.2);}
-
-.sep{height:1px;background:rgba(255,255,255,0.05);margin:0 0 16px;}
-.price-row{display:flex;align-items:baseline;gap:5px;margin-bottom:14px;}
-.price{font-size:28px;font-weight:900;letter-spacing:-.8px;}
-.per{font-size:12px;color:rgba(255,255,255,0.25);}
-
-.btns{display:flex;gap:7px;}
-.btn-ghost{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);color:rgba(255,255,255,0.55);font-size:12.5px;font-weight:600;padding:10px;border-radius:10px;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif;}
-.btn-ghost i{font-size:15px;}
-.btn-ghost:hover{background:rgba(255,255,255,0.09);color:rgba(255,255,255,.8);}
-.btn-main{flex:1.4;display:flex;align-items:center;justify-content:center;gap:7px;background:#fff;color:#08080a;font-size:12.5px;font-weight:700;padding:10px;border-radius:10px;cursor:pointer;border:none;transition:all .15s;font-family:'Inter',sans-serif;}
-.btn-main i{font-size:15px;}
-.btn-main:hover{background:rgba(255,255,255,.88);}
-.btn-main.blue{background:#2563eb;color:#fff;}
-.btn-main.blue:hover{background:#1d4ed8;}
-
-.support-section{margin:0 32px 32px;border-radius:16px;background:#0d0d10;border:1px solid rgba(255,255,255,0.06);overflow:hidden;}
-.support-inner{padding:28px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
-.support-text{display:flex;align-items:center;gap:14px;}
-.support-icon{width:44px;height:44px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.support-icon i{font-size:22px;color:rgba(255,255,255,0.4);}
-.support-text h3{font-size:15px;font-weight:700;margin-bottom:3px;}
-.support-text p{font-size:12.5px;color:rgba(255,255,255,0.3);}
-.support-btns{display:flex;gap:9px;flex-wrap:wrap;}
-.s-btn{display:flex;align-items:center;gap:8px;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:all .15s;}
-.s-btn i{font-size:17px;}
-.s-btn:hover{opacity:.85;transform:translateY(-1px);}
-.tg{background:#229ED9;color:#fff;}
-.dc{background:#5865F2;color:#fff;}
-
-.trust{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:0;border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04);margin:0 32px;padding:14px 0;}
-.ti{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(255,255,255,0.22);padding:0 28px;border-right:1px solid rgba(255,255,255,0.05);white-space:nowrap;}
-.ti:last-child{border-right:none;}
-.ti i{font-size:15px;color:rgba(255,255,255,0.18);}
-
-footer{padding:32px 32px 0;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;border-top:1px solid rgba(255,255,255,0.04);margin-top:32px;}
-.f-logo{font-size:15px;font-weight:800;letter-spacing:-.2px;margin-bottom:8px;}
-.f-logo span{color:rgba(255,255,255,0.3);}
-.f-tag{font-size:12px;color:rgba(255,255,255,0.22);line-height:1.7;}
-.f-col h4{font-size:11px;font-weight:700;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
-.f-col a{display:flex;align-items:center;gap:7px;font-size:12.5px;color:rgba(255,255,255,0.25);text-decoration:none;margin-bottom:9px;transition:color .15s;}
-.f-col a i{font-size:14px;color:rgba(255,255,255,0.15);}
-.f-col a:hover{color:rgba(255,255,255,.6);}
-.footer-btm{text-align:center;font-size:11px;color:rgba(255,255,255,0.15);padding:20px 32px 24px;margin-top:28px;border-top:1px solid rgba(255,255,255,0.04);}
-</style>
+        /* MODALS */
+        .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(10px);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;}
+        .modal-overlay.open{opacity:1;pointer-events:all;}
+        .modal{background:#0f0f12;border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:28px;width:100%;max-width:420px;margin:16px;position:relative;transform:translateY(12px) scale(0.97);transition:transform .2s;box-shadow:0 40px 80px rgba(0,0,0,0.6);}
+        .modal-overlay.open .modal{transform:translateY(0) scale(1);}
+        .modal-close{position:absolute;top:14px;right:14px;width:30px;height:30px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;color:rgba(255,255,255,0.4);}
+        .modal-close:hover{background:rgba(255,255,255,0.1);}
+        .modal-close i{font-size:16px;}
+        .modal-icon{width:48px;height:48px;border-radius:13px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+        .modal-icon i{font-size:24px;color:rgba(255,255,255,0.5);}
+        .modal h2{font-size:18px;font-weight:800;letter-spacing:-.3px;margin-bottom:6px;}
+        .modal p{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.65;margin-bottom:20px;}
+        .modal-sep{height:1px;background:rgba(255,255,255,0.06);margin:16px 0;}
+        .modal-row{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:11px;padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:background .15s;text-decoration:none;}
+        .modal-row:last-of-type{margin-bottom:0;}
+        .modal-row:hover{background:rgba(255,255,255,0.08);}
+        .modal-row-ico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+        .modal-row-ico i{font-size:18px;color:#fff;}
+        .modal-row-ico.tg{background:#229ED9;}
+        .modal-row-ico.dc{background:#5865F2;}
+        .modal-row-ico.neutral{background:rgba(255,255,255,0.1);}
+        .modal-row-txt{flex:1;}
+        .modal-row-txt strong{display:block;font-size:13.5px;font-weight:600;color:#fff;margin-bottom:1px;}
+        .modal-row-txt span{font-size:12px;color:rgba(255,255,255,0.35);}
+        .modal-row-arrow{color:rgba(255,255,255,0.2);}
+        .modal-row-arrow i{font-size:16px;}
+        .modal-stat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:18px;}
+        .modal-stat{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px;text-align:center;}
+        .modal-stat-n{font-size:18px;font-weight:800;letter-spacing:-.4px;}
+        .modal-stat-l{font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px;}
+        .modal-price-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:14px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;}
+        .modal-price-box span:first-child{font-size:13px;color:rgba(255,255,255,0.4);}
+        .modal-price-box span:last-child{font-size:20px;font-weight:800;}
+        .modal-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#08080a;font-size:13.5px;font-weight:700;padding:12px;border-radius:11px;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:opacity .15s;margin-top:8px;}
+        .modal-btn:hover{opacity:.88;}
+        .modal-btn.blue{background:#5865F2;color:#fff;}
+        .modal-btn.danger{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.08);}
+        .cart-item{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+        .cart-item-name{font-size:13.5px;font-weight:600;}
+        .cart-item-price{font-size:12px;color:rgba(255,255,255,0.35);margin-top:2px;}
+        .cart-item-total{font-size:15px;font-weight:700;}
+    </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <a class="logo" href="#">
-    <div class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><polygon points="8,1 15,4.5 15,11.5 8,15 1,11.5 1,4.5" fill="#08080a"/></svg></div>
-    <span class="logo-name">eternal<span>.gg</span></span>
-  </a>
-  <div class="nav-links">
-    <a href="#"><i class="ti ti-home"></i>Home</a>
-    <a href="#" class="active"><i class="ti ti-shopping-bag"></i>Store</a>
-    <a href="#"><i class="ti ti-headset"></i>Support</a>
-    <a href="#"><i class="ti ti-brand-discord"></i>Discord</a>
-  </div>
-  <div class="nav-right">
-    <div class="nav-search">
-      <i class="ti ti-search" style="font-size:14px;"></i>
-      Search products...
-      <span class="kbd">Ctrl K</span>
+    <a class="logo" href="#">
+        <div class="logo-mark"><svg viewBox="0 0 16 16" fill="none"><polygon points="8,1 15,4.5 15,11.5 8,15 1,11.5 1,4.5" fill="#08080a"/></svg></div>
+        <span class="logo-name">eternal<span>.gg</span></span>
+    </a>
+    <div class="nav-links">
+        <a href="#" onclick="openModal('home');return false;"><i class="ti ti-home"></i>Home</a>
+        <a href="#" class="active" onclick="scrollToStore();return false;"><i class="ti ti-shopping-bag"></i>Store</a>
+        <a href="#" onclick="openModal('support');return false;"><i class="ti ti-headset"></i>Support</a>
+        <a href="#" onclick="openModal('discord');return false;"><i class="ti ti-brand-discord"></i>Discord</a>
     </div>
-    <div class="cart-btn"><i class="ti ti-shopping-cart"></i></div>
-  </div>
+    <div class="nav-right">
+        <div class="nav-search">
+            <i class="ti ti-search" style="font-size:14px;"></i>
+            Search products...
+            <span class="kbd">Ctrl K</span>
+        </div>
+        <div class="cart-btn" onclick="openModal('cart')"><i class="ti ti-shopping-cart"></i></div>
+    </div>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
-  <div class="hero-noise"></div>
-  <div class="hero-line"></div>
-  <div class="hero-dot"></div>
-  <div class="hero-inner">
-    <div class="hero-left">
-      <div class="hero-chip"><div class="chip-dot"></div> v2.5 — Live now</div>
-      <div class="hero-title">Eternal Script<br><em>for Roblox.</em></div>
-      <div class="hero-sub">
-        <i class="ti ti-bolt"></i> Instant delivery &nbsp;·&nbsp;
-        <i class="ti ti-refresh"></i> Auto-updates &nbsp;·&nbsp;
-        <i class="ti ti-shield-check"></i> Undetected
-      </div>
+    <div class="hero-noise"></div>
+    <div class="hero-line"></div>
+    <div class="hero-dot"></div>
+    <div class="hero-inner">
+        <div class="hero-left">
+            <div class="hero-chip"><div class="chip-dot"></div> v2.5 — Live now</div>
+            <div class="hero-title">Eternal Script<br><em>for Roblox.</em></div>
+            <div class="hero-sub">
+                <i class="ti ti-bolt"></i> Instant delivery &nbsp;·&nbsp;
+                <i class="ti ti-refresh"></i> Auto-updates &nbsp;·&nbsp;
+                <i class="ti ti-shield-check"></i> Undetected
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-stat"><i class="ti ti-users"></i><div class="hero-stat-num">200+</div><div class="hero-stat-lbl">customers</div></div>
+            <div class="hero-stat"><i class="ti ti-activity"></i><div class="hero-stat-num">99.9%</div><div class="hero-stat-lbl">uptime</div></div>
+            <div class="hero-stat"><i class="ti ti-star"></i><div class="hero-stat-num">5.0 ★</div><div class="hero-stat-lbl">rating</div></div>
+        </div>
     </div>
-    <div class="hero-right">
-      <div class="hero-stat">
-        <i class="ti ti-users"></i>
-        <div class="hero-stat-num">200+</div>
-        <div class="hero-stat-lbl">customers</div>
-      </div>
-      <div class="hero-stat">
-        <i class="ti ti-activity"></i>
-        <div class="hero-stat-num">99.9%</div>
-        <div class="hero-stat-lbl">uptime</div>
-      </div>
-      <div class="hero-stat">
-        <i class="ti ti-star"></i>
-        <div class="hero-stat-num">5.0 ★</div>
-        <div class="hero-stat-lbl">rating</div>
-      </div>
-    </div>
-  </div>
 </div>
 
+<!-- STORE -->
 <div class="store">
-  <div class="store-top">
-    <div class="store-left">
-      <div class="tabs">
-        <div class="tab on"><i class="ti ti-layout-grid"></i>All</div>
-        <div class="tab"><i class="ti ti-calendar"></i>Monthly</div>
-        <div class="tab"><i class="ti ti-infinity"></i>Lifetime</div>
-      </div>
-      <span class="count-pill">2 products</span>
-    </div>
-    <button class="sort-btn">
-      <i class="ti ti-adjustments-horizontal"></i>
-      Most Popular
-    </button>
-  </div>
-
-  <div class="grid">
-
-    <!-- PREMIUM -->
-    <div class="card hi">
-      <div class="card-img img-premium">
-        <div class="blob b1 bp1"></div>
-        <div class="blob b2 bp2"></div>
-        <span class="badge-tl"><i class="ti ti-code"></i>SCRIPTS</span>
-        <span class="badge-tr b-premium">Premium</span>
-        <div class="card-ico">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="44" height="44" rx="12" fill="rgba(255,255,255,0.04)"/>
-            <!-- Shield base -->
-            <path d="M22 8L34 13V22C34 28.627 28.627 35 22 36C15.373 35 10 28.627 10 22V13L22 8Z" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
-            <!-- Crown inside shield -->
-            <path d="M15.5 25.5L17 19L20 22.5L22 17L24 22.5L27 19L28.5 25.5H15.5Z" fill="rgba(255,255,255,0.6)" stroke="rgba(255,255,255,0.15)" stroke-width="0.5"/>
-            <rect x="15.5" y="25.5" width="13" height="2" rx="1" fill="rgba(255,255,255,0.5)"/>
-            <!-- Crown dots -->
-            <circle cx="17" cy="19" r="1.2" fill="#fff"/>
-            <circle cx="22" cy="17" r="1.2" fill="#fff"/>
-            <circle cx="27" cy="19" r="1.2" fill="#fff"/>
-          </svg>
+    <div class="store-top">
+        <div class="store-left">
+            <div class="tabs">
+                <div class="tab on" onclick="setTab(this,'all')"><i class="ti ti-layout-grid"></i>All</div>
+                <div class="tab" onclick="setTab(this,'monthly')"><i class="ti ti-calendar"></i>Monthly</div>
+                <div class="tab" onclick="setTab(this,'lifetime')"><i class="ti ti-infinity"></i>Lifetime</div>
+            </div>
+            <span class="count-pill" id="count-pill">2 products</span>
         </div>
-        <div class="status-tag"><div class="green-dot"></div>Up to date</div>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Eternal Premium</div>
-        <div class="meta">
-          <span class="stars">★★★★★</span>
-          <span class="score">5.0</span>
-          <span class="dot">·</span>
-          <span class="sold"><i class="ti ti-shopping-cart"></i>612 sold</span>
-        </div>
-        <div class="feats">
-          <div class="feat"><i class="ti ti-refresh feat-ico"></i>Обновления скрипта</div>
-          <div class="feat"><i class="ti ti-brand-discord feat-ico"></i>Поддержка Discord<span class="ftag ft-w">≤12ч</span></div>
-        </div>
-        <div class="sep"></div>
-        <div class="price-row"><span class="price">₽299</span><span class="per">/ месяц</span></div>
-        <div class="btns">
-          <button class="btn-ghost"><i class="ti ti-shopping-cart"></i>Add to cart</button>
-          <button class="btn-main"><i class="ti ti-player-play"></i>Buy now</button>
-        </div>
-      </div>
+        <button class="sort-btn" onclick="openModal('sort')">
+            <i class="ti ti-adjustments-horizontal"></i>
+            Most Popular
+        </button>
     </div>
 
-    <!-- BETA -->
-    <div class="card">
-      <div class="card-img img-beta">
-        <div class="blob b1 bb1"></div>
-        <div class="blob b2 bb2"></div>
-        <span class="badge-tl"><i class="ti ti-code"></i>SCRIPTS</span>
-        <span class="badge-tr b-beta">Beta</span>
-        <div class="card-ico">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="44" height="44" rx="12" fill="rgba(100,180,255,0.05)"/>
-            <!-- Flask body -->
-            <path d="M18 10H26V20L32 33C32 34.105 31.105 35 30 35H14C12.895 35 12 34.105 12 33L18 20V10Z" fill="rgba(100,180,255,0.12)" stroke="rgba(100,200,255,0.3)" stroke-width="1.2"/>
-            <!-- Flask neck highlight -->
-            <rect x="18" y="10" width="8" height="2" rx="1" fill="rgba(100,200,255,0.3)"/>
-            <!-- Liquid inside -->
-            <path d="M14.5 28C16 25 20 24 22 25C24 26 27 25 29.5 27L30.5 32.5C30.5 33.3 29.8 34 29 34H15C14.2 34 13.5 33.3 13.5 32.5L14.5 28Z" fill="rgba(60,160,255,0.35)"/>
-            <!-- Bubbles -->
-            <circle cx="18" cy="30" r="1.5" fill="rgba(140,210,255,0.5)"/>
-            <circle cx="23" cy="27" r="1" fill="rgba(140,210,255,0.4)"/>
-            <circle cx="26" cy="31" r="1.2" fill="rgba(140,210,255,0.45)"/>
-            <!-- Sparkle -->
-            <path d="M30 12L31 14L33 13L31 15L32 17L30 15.5L28 17L29 15L27 13L29 14Z" fill="rgba(160,220,255,0.6)"/>
-          </svg>
-        </div>
-        <div class="status-tag"><div class="green-dot"></div>Up to date</div>
-      </div>
-      <div class="card-body">
-        <div class="card-name">Eternal Beta</div>
-        <div class="meta">
-          <span class="stars">★★★★★</span>
-          <span class="score">5.0</span>
-          <span class="dot">·</span>
-          <span class="sold"><i class="ti ti-shopping-cart"></i>248 sold</span>
-        </div>
-        <div class="feats">
-          <div class="feat"><i class="ti ti-rocket feat-ico"></i>Обновления быстрее<span class="ftag ft-g">×2</span></div>
-          <div class="feat"><i class="ti ti-headset feat-ico"></i>Приоритетная поддержка<span class="ftag ft-g">≤1ч</span></div>
-        </div>
-        <div class="sep"></div>
-        <div class="price-row"><span class="price">₽599</span><span class="per">/ месяц</span></div>
-        <div class="btns">
-          <button class="btn-ghost"><i class="ti ti-shopping-cart"></i>Add to cart</button>
-          <button class="btn-main blue"><i class="ti ti-player-play"></i>Buy now</button>
-        </div>
-      </div>
-    </div>
+    <div class="grid" id="cards-grid">
 
-  </div>
+        <!-- PREMIUM -->
+        <div class="card hi" data-type="monthly">
+            <div class="card-img img-premium">
+                <div class="blob b1 bp1"></div>
+                <div class="blob b2 bp2"></div>
+                <span class="badge-tl"><i class="ti ti-code"></i>SCRIPTS</span>
+                <span class="badge-tr b-premium">Premium</span>
+                <div class="card-ico">
+                    <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                        <rect width="44" height="44" rx="12" fill="rgba(255,255,255,0.04)"/>
+                        <path d="M22 8L34 13V22C34 28.627 28.627 35 22 36C15.373 35 10 28.627 10 22V13L22 8Z" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+                        <path d="M15.5 25.5L17 19L20 22.5L22 17L24 22.5L27 19L28.5 25.5H15.5Z" fill="rgba(255,255,255,0.6)"/>
+                        <rect x="15.5" y="25.5" width="13" height="2" rx="1" fill="rgba(255,255,255,0.5)"/>
+                        <circle cx="17" cy="19" r="1.2" fill="#fff"/>
+                        <circle cx="22" cy="17" r="1.2" fill="#fff"/>
+                        <circle cx="27" cy="19" r="1.2" fill="#fff"/>
+                    </svg>
+                </div>
+                <div class="status-tag"><div class="green-dot"></div>Up to date</div>
+            </div>
+            <div class="card-body">
+                <div class="card-name">Eternal Premium</div>
+                <div class="meta">
+                    <span class="stars">★★★★★</span>
+                    <span class="score">5.0</span>
+                    <span class="dot">·</span>
+                    <span class="sold"><i class="ti ti-shopping-cart"></i>612 sold</span>
+                </div>
+                <div class="feats">
+                    <div class="feat"><i class="ti ti-refresh feat-ico"></i>Обновления скрипта</div>
+                    <div class="feat"><i class="ti ti-brand-discord feat-ico"></i>Поддержка Discord<span class="ftag ft-w">≤12ч</span></div>
+                </div>
+                <div class="sep"></div>
+                <div class="price-row"><span class="price">₽299</span><span class="per">/ месяц</span></div>
+                <div class="btns">
+                    <button class="btn-ghost" onclick="addToCart('Eternal Premium','₽299')"><i class="ti ti-shopping-cart"></i>Add to cart</button>
+                    <button class="btn-main" onclick="buyNow('premium')"><i class="ti ti-player-play"></i>Buy now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- BETA -->
+        <div class="card" data-type="monthly">
+            <div class="card-img img-beta">
+                <div class="blob b1 bb1"></div>
+                <div class="blob b2 bb2"></div>
+                <span class="badge-tl"><i class="ti ti-code"></i>SCRIPTS</span>
+                <span class="badge-tr b-beta">Beta</span>
+                <div class="card-ico">
+                    <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                        <rect width="44" height="44" rx="12" fill="rgba(100,180,255,0.05)"/>
+                        <path d="M18 10H26V20L32 33C32 34.105 31.105 35 30 35H14C12.895 35 12 34.105 12 33L18 20V10Z" fill="rgba(100,180,255,0.12)" stroke="rgba(100,200,255,0.3)" stroke-width="1.2"/>
+                        <rect x="18" y="10" width="8" height="2" rx="1" fill="rgba(100,200,255,0.3)"/>
+                        <path d="M14.5 28C16 25 20 24 22 25C24 26 27 25 29.5 27L30.5 32.5C30.5 33.3 29.8 34 29 34H15C14.2 34 13.5 33.3 13.5 32.5L14.5 28Z" fill="rgba(60,160,255,0.35)"/>
+                        <circle cx="18" cy="30" r="1.5" fill="rgba(140,210,255,0.5)"/>
+                        <circle cx="23" cy="27" r="1" fill="rgba(140,210,255,0.4)"/>
+                        <circle cx="26" cy="31" r="1.2" fill="rgba(140,210,255,0.45)"/>
+                        <path d="M30 12L31 14L33 13L31 15L32 17L30 15.5L28 17L29 15L27 13L29 14Z" fill="rgba(160,220,255,0.6)"/>
+                    </svg>
+                </div>
+                <div class="status-tag"><div class="green-dot"></div>Up to date</div>
+            </div>
+            <div class="card-body">
+                <div class="card-name">Eternal Beta</div>
+                <div class="meta">
+                    <span class="stars">★★★★★</span>
+                    <span class="score">5.0</span>
+                    <span class="dot">·</span>
+                    <span class="sold"><i class="ti ti-shopping-cart"></i>248 sold</span>
+                </div>
+                <div class="feats">
+                    <div class="feat"><i class="ti ti-rocket feat-ico"></i>Обновления быстрее<span class="ftag ft-g">×2</span></div>
+                    <div class="feat"><i class="ti ti-headset feat-ico"></i>Приоритетная поддержка<span class="ftag ft-g">≤1ч</span></div>
+                </div>
+                <div class="sep"></div>
+                <div class="price-row"><span class="price">₽599</span><span class="per">/ месяц</span></div>
+                <div class="btns">
+                    <button class="btn-ghost" onclick="addToCart('Eternal Beta','₽599')"><i class="ti ti-shopping-cart"></i>Add to cart</button>
+                    <button class="btn-main blue" onclick="buyNow('beta')"><i class="ti ti-player-play"></i>Buy now</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 <!-- SUPPORT -->
 <div class="support-section">
-  <div class="support-inner">
-    <div class="support-text">
-      <div class="support-icon"><i class="ti ti-message-circle"></i></div>
-      <div>
-        <h3>Нужна помощь?</h3>
-        <p>Напиши нам в Telegram или Discord — ответим быстро</p>
-      </div>
+    <div class="support-inner">
+        <div class="support-text">
+            <div class="support-icon"><i class="ti ti-message-circle"></i></div>
+            <div>
+                <h3>Нужна помощь?</h3>
+                <p>Напиши нам в Telegram или Discord — ответим быстро</p>
+            </div>
+        </div>
+        <div class="support-btns">
+            <a href="https://t.me/permanentlyyy" target="_blank" class="s-btn tg"><i class="ti ti-brand-telegram"></i>@permanentlyyy</a>
+            <button id="dc-btn" class="s-btn dc" onclick="copyDiscord()"><i class="ti ti-brand-discord"></i><span id="dc-text">HUISOSIKUSITUNITY</span></button>
+        </div>
     </div>
-    <div class="support-btns">
-      <a href="https://t.me/permanentlyyy" target="_blank" class="s-btn tg">
-        <i class="ti ti-brand-telegram"></i>
-        @permanentlyyy
-      </a>
-      <button id="dc-btn" class="s-btn dc" onclick="copyDiscord()">
-        <i class="ti ti-brand-discord"></i>
-        <span id="dc-text">HUISOSIKUSITUNITY</span>
-      </button>
-    </div>
-  </div>
 </div>
 
 <!-- TRUST -->
 <div class="trust">
-  <div class="ti"><i class="ti ti-shield-lock"></i>Secure Checkout</div>
-  <div class="ti"><i class="ti ti-lock"></i>SSL Encrypted</div>
-  <div class="ti"><i class="ti ti-bolt"></i>Instant Delivery</div>
-  <div class="ti"><i class="ti ti-credit-card"></i>Safe Payment</div>
+    <div class="ti"><i class="ti ti-shield-lock"></i>Secure Checkout</div>
+    <div class="ti"><i class="ti ti-lock"></i>SSL Encrypted</div>
+    <div class="ti"><i class="ti ti-bolt"></i>Instant Delivery</div>
+    <div class="ti"><i class="ti ti-credit-card"></i>Safe Payment</div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div>
-    <div class="f-logo">eternal<span>.gg</span></div>
-    <div class="f-tag">Premium Roblox scripts.<br>Instant delivery, lifetime access,<br>and free updates forever.</div>
-  </div>
-  <div class="f-col">
-    <h4>Store</h4>
-    <a href="#"><i class="ti ti-package"></i>All products</a>
-    <a href="#"><i class="ti ti-code"></i>Scripts</a>
-    <a href="#"><i class="ti ti-users"></i>Affiliate program</a>
-  </div>
-  <div class="f-col">
-    <h4>Support</h4>
-    <a href="https://t.me/permanentlyyy" target="_blank"><i class="ti ti-brand-telegram"></i>Telegram</a>
-    <a href="#" onclick="copyDiscord();return false;"><i class="ti ti-brand-discord"></i>Discord</a>
-    <a href="#"><i class="ti ti-star"></i>Feedbacks</a>
-  </div>
-  <div class="f-col">
-    <h4>Legal</h4>
-    <a href="#"><i class="ti ti-file-text"></i>Terms of Service</a>
-    <a href="#"><i class="ti ti-receipt-refund"></i>Refund Policy</a>
-  </div>
+    <div>
+        <div class="f-logo">eternal<span>.gg</span></div>
+        <div class="f-tag">Premium Roblox scripts.<br>Instant delivery, lifetime access,<br>and free updates forever.</div>
+    </div>
+    <div class="f-col">
+        <h4>Store</h4>
+        <a href="#"><i class="ti ti-package"></i>All products</a>
+        <a href="#"><i class="ti ti-code"></i>Scripts</a>
+        <a href="#"><i class="ti ti-users"></i>Affiliate program</a>
+    </div>
+    <div class="f-col">
+        <h4>Support</h4>
+        <a href="https://t.me/permanentlyyy" target="_blank"><i class="ti ti-brand-telegram"></i>Telegram</a>
+        <a href="#" onclick="copyDiscord();return false;"><i class="ti ti-brand-discord"></i>Discord</a>
+        <a href="#"><i class="ti ti-star"></i>Feedbacks</a>
+    </div>
+    <div class="f-col">
+        <h4>Legal</h4>
+        <a href="#"><i class="ti ti-file-text"></i>Terms of Service</a>
+        <a href="#"><i class="ti ti-receipt-refund"></i>Refund Policy</a>
+    </div>
 </footer>
 <div class="footer-btm">© 2025 eternal.gg · All rights reserved.</div>
 
-<script>
-function copyDiscord() {
-  var text = 'HUISOSIKUSITUNITY';
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(function() {
-      showCopied();
-    }).catch(function() {
-      fallbackCopy(text);
-    });
-  } else {
-    fallbackCopy(text);
-  }
-}
-function fallbackCopy(text) {
-  var el = document.createElement('textarea');
-  el.value = text;
-  el.style.position = 'fixed';
-  el.style.opacity = '0';
-  document.body.appendChild(el);
-  el.focus();
-  el.select();
-  document.execCommand('copy');
-  document.body.removeChild(el);
-  showCopied();
-}
-function showCopied() {
-  var btn = document.getElementById('dc-btn');
-  var txt = document.getElementById('dc-text');
-  txt.textContent = 'Скопировано ✓';
-  btn.style.background = '#3ba55d';
-  setTimeout(function() {
-    txt.textContent = 'HUISOSIKUSITUNITY';
-    btn.style.background = '';
-  }, 2000);
-}
-</script>
+<!-- ===== MODALS ===== -->
 
+<!-- HOME -->
+<div class="modal-overlay" id="modal-home" onclick="closeOnOverlay(event,'home')">
+    <div class="modal">
+        <div class="modal-close" onclick="closeModal('home')"><i class="ti ti-x"></i></div>
+        <div class="modal-icon"><i class="ti ti-home"></i></div>
+        <h2>Добро пожаловать</h2>
+        <p>Eternal — лучший скрипт для Roblox. Мощный, незаметный и всегда актуальный.</p>
+        <div class="modal-stat-grid">
+            <div class="modal-stat"><div class="modal-stat-n">200+</div><div class="modal-stat-l">customers</div></div>
+            <div class="modal-stat"><div class="modal-stat-n">99.9%</div><div class="modal-stat-l">uptime</div></div>
+            <div class="modal-stat"><div class="modal-stat-n">5.0★</div><div class="modal-stat-l">rating</div></div>
+        </div>
+        <button class="modal-btn" onclick="closeModal('home');scrollToStore();">
+            <i class="ti ti-shopping-bag" style="font-size:16px;"></i> Смотреть планы
+        </button>
+    </div>
+</div>
+
+<!-- SUPPORT -->
+<div class="modal-overlay" id="modal-support" onclick="closeOnOverlay(event,'support')">
+    <div class="modal">
+        <div class="modal-close" onclick="closeModal('support')"><i class="ti ti-x"></i></div>
+        <div class="modal-icon"><i class="ti ti-headset"></i></div>
+        <h2>Поддержка</h2>
+        <p>Выбери удобный способ связи — ответим быстро.</p>
+        <a href="https://t.me/permanentlyyy" target="_blank" class="modal-row">
+            <div class="modal-row-ico tg"><i class="ti ti-brand-telegram"></i></div>
+            <div class="modal-row-txt"><strong>Telegram</strong><span>@permanentlyyy · обычно ≤1ч</span></div>
+            <div class="modal-row-arrow"><i class="ti ti-arrow-right"></i></div>
+        </a>
+        <div class="modal-row" onclick="copyDiscord()">
+            <div class="modal-row-ico dc"><i class="ti ti-brand-discord"></i></div>
+            <div class="modal-row-txt"><strong>Discord</strong><span>HUISOSIKUSITUNITY — нажми чтобы скопировать</span></div>
+            <div class="modal-row-arrow"><i class="ti ti-copy"></i></div>
+        </div>
+    </div>
+</div>
+
+<!-- DISCORD -->
+<div class="modal-overlay" id="modal-discord" onclick="closeOnOverlay(event,'discord')">
+    <div class="modal">
+        <div class="modal-close" onclick="closeModal('discord')"><i class="ti ti-x"></i></div>
+        <div class="modal-icon" style="background:rgba(88,101,242,0.15);border-color:rgba(88,101,242,0.3);"><i class="ti ti-brand-discord" style="color:#7289da;"></i></div>
+        <h2>Discord</h2>
+        <p>Напиши нам в Discord — анонсы, поддержка и новости.</p>
+        <div class="modal-row" onclick="copyDiscord()">
+            <div class="modal-row-ico dc"><i class="ti ti-brand-discord"></i></div>
+            <div class="modal-row-txt"><strong>HUISOSIKUSITUNITY</strong><span>Нажми чтобы скопировать ник</span></div>
+            <div class="modal-row-arrow"><i class="ti ti-copy"></i></div>
+        </div>
+        <button class="modal-btn blue" onclick="copyDiscord()">
+            <i class="ti ti-copy" style="font-size:15px;"></i> Скопировать ник
+        </button>
+    </div>
+</div>
+
+<!-- BUY NOW -->
+<div class="modal-overlay" id="modal-buy" onclick="closeOnOverlay(event,'buy')">
+    <div class="modal">
+        <div class="modal-close" onclick="closeModal('buy')"><i class="ti ti-x"></i></div>
+        <div class="modal-icon" id="buy-icon"><i class="ti ti-player-play"></i></div>
+        <h2 id="buy-title">Купить план</h2>
+        <p>Выбери способ связи — пришлём ключ сразу после оплаты.</p>
+        <div class="modal-price-box">
+            <span>К оплате</span>
+            <span id="buy-price">₽299</span>
+        </div>
+        <a href="https://t.me/permanentlyyy" target="_blank" class="modal-row">
+            <div class="modal-row-ico tg"><i class="ti ti-brand-telegram"></i></div>
+            <div class="modal-row-txt"><strong>Оплатить через Telegram</strong><span>Написать @permanentlyyy</span></div>
+            <div class="modal-row-arrow"><i class="ti ti-arrow-right"></i></div>
+        </a>
+        <div class="modal-row" onclick="copyDiscord()">
+            <div class="modal-row-ico dc"><i class="ti ti-brand-discord"></i></div>
+            <div class="modal-row-txt"><strong>Оплатить через Discord</strong><span>Скопировать ник HUISOSIKUSITUNITY</span></div>
+            <div class="modal-row-arrow"><i class="ti ti-copy"></i></div>
+        </div>
+    </div>
+</div>
+
+<!-- CART -->
+<div class="modal-overlay" id="modal-cart" onclick="closeOnOverlay(event,'cart')">
+    <div class="modal">
+        <div class="modal-close" onclick="closeModal('cart')"><i class="ti ti-x"></i></div>
+        <div class="modal-icon"><i class="ti ti-shopping-cart"></i></div>
+        <h2>Корзина</h2>
+        <div id="cart-empty" style="text-align:center;padding:20px 0 8px;color:rgba(255,255,255,0.25);font-size:13px;">
+            <i class="ti ti-shopping-cart-off" style="font-size:34px;display:block;margin-bottom:10px;"></i>Корзина пуста
+        </div>
+        <div id="cart-items"></div>
+        <div id="cart-total-row" style="display:none;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:13px 16px;margin-top:12px;flex-direction:row;justify-content:space-between;align-items:center;">
+            <span style="font-size:13px;color:rgba(255,255,255,0.4);">Итого</span>
+            <span style="font-size:18px;font-weight:800;" id="cart-total">₽0</span>
+        </div>
+        <button id="cart-checkout-btn" class="modal-btn" style="display:none;" onclick="checkoutCart()">
+            <i class="ti ti-player-play" style="font-size:15px;"></i> Оформить заказ
+        </button>
+        <button id="cart-clear-btn" class="modal-btn danger" style="display:none;" onclick="clearCart()">
+            <i class="ti ti-trash"></i> Очистить корзину
+        </button>
+    </div>
+</div>
+
+<!-- SORT -->
+<div class="modal-overlay" id="modal-sort" onclick="closeOnOverlay(event,'sort')">
+    <div class="modal">
+        <div class="modal-close" onclick="closeModal('sort')"><i class="ti ti-x"></i></div>
+        <div class="modal-icon"><i class="ti ti-adjustments-horizontal"></i></div>
+        <h2>Сортировка</h2>
+        <p>Выбери порядок отображения товаров</p>
+        <div class="modal-row" onclick="setSort('popular')">
+            <div class="modal-row-ico neutral"><i class="ti ti-trending-up"></i></div>
+            <div class="modal-row-txt"><strong>Самые популярные</strong><span>Сначала наиболее продаваемые</span></div>
+            <div class="modal-row-arrow" id="sort-popular"><i class="ti ti-check"></i></div>
+        </div>
+        <div class="modal-row" onclick="setSort('cheap')">
+            <div class="modal-row-ico neutral"><i class="ti ti-sort-ascending-numbers"></i></div>
+            <div class="modal-row-txt"><strong>Сначала дешевле</strong><span>По возрастанию цены</span></div>
+            <div class="modal-row-arrow" id="sort-cheap" style="opacity:0;"><i class="ti ti-check"></i></div>
+        </div>
+        <div class="modal-row" onclick="setSort('expensive')">
+            <div class="modal-row-ico neutral"><i class="ti ti-sort-descending-numbers"></i></div>
+            <div class="modal-row-txt"><strong>Сначала дороже</strong><span>По убыванию цены</span></div>
+            <div class="modal-row-arrow" id="sort-expensive" style="opacity:0;"><i class="ti ti-check"></i></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var cart = [];
+
+    function openModal(id) { document.getElementById('modal-'+id).classList.add('open'); document.body.style.overflow='hidden'; }
+    function closeModal(id) { document.getElementById('modal-'+id).classList.remove('open'); document.body.style.overflow=''; }
+    function closeOnOverlay(e,id) { if(e.target===e.currentTarget) closeModal(id); }
+    function scrollToStore() { document.querySelector('.store').scrollIntoView({behavior:'smooth'}); }
+    document.addEventListener('keydown', function(e) {
+        if(e.key==='Escape') ['home','support','discord','buy','cart','sort'].forEach(closeModal);
+    });
+
+    function setTab(el, type) {
+        document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('on'); });
+        el.classList.add('on');
+        var cards = document.querySelectorAll('#cards-grid .card');
+        var shown = 0;
+        cards.forEach(function(c) {
+            var show = type==='all' || c.dataset.type===type;
+            c.style.display = show ? '' : 'none';
+            if(show) shown++;
+        });
+        document.getElementById('count-pill').textContent = shown + ' product' + (shown!==1?'s':'');
+    }
+
+    function buyNow(plan) {
+        var data = {
+            premium: {title:'Eternal Premium', price:'₽299'},
+            beta:    {title:'Eternal Beta',    price:'₽599'}
+        };
+        var p = data[plan];
+        document.getElementById('buy-title').textContent = p.title;
+        document.getElementById('buy-price').textContent = p.price;
+        openModal('buy');
+    }
+
+    function addToCart(name, price) {
+        var found = cart.find(function(i){ return i.name===name; });
+        if(found) { found.qty++; } else { cart.push({name:name, price:price, qty:1}); }
+        updateCart();
+        showToast('<i class="ti ti-check" style="color:#4ade80;margin-right:6px;"></i>' + name + ' добавлен в корзину');
+    }
+
+    function updateCart() {
+        var total = cart.reduce(function(s,i){ return s+i.qty; }, 0);
+        var badge = document.getElementById('cart-badge');
+        if(!badge) {
+            badge = document.createElement('span');
+            badge.id = 'cart-badge';
+            badge.style.cssText = 'position:absolute;top:-5px;right:-5px;min-width:16px;height:16px;background:#fff;color:#08080a;font-size:9px;font-weight:800;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 3px;';
+            document.querySelector('.cart-btn').appendChild(badge);
+        }
+        badge.textContent = total;
+        badge.style.display = total > 0 ? 'flex' : 'none';
+        renderCart();
+    }
+
+    function renderCart() {
+        var empty = document.getElementById('cart-empty');
+        var items = document.getElementById('cart-items');
+        var totalRow = document.getElementById('cart-total-row');
+        var checkBtn = document.getElementById('cart-checkout-btn');
+        var clearBtn = document.getElementById('cart-clear-btn');
+        if(cart.length === 0) {
+            empty.style.display = 'block';
+            items.innerHTML = '';
+            totalRow.style.display = 'none';
+            checkBtn.style.display = 'none';
+            clearBtn.style.display = 'none';
+            return;
+        }
+        empty.style.display = 'none';
+        totalRow.style.display = 'flex';
+        checkBtn.style.display = 'flex';
+        clearBtn.style.display = 'flex';
+        var sum = 0;
+        items.innerHTML = cart.map(function(item) {
+            var num = parseInt(item.price.replace(/[^\d]/g,''));
+            sum += num * item.qty;
+            return '<div class="cart-item"><div><div class="cart-item-name">'+item.name+'</div><div class="cart-item-price">'+item.price+' × '+item.qty+'</div></div><div class="cart-item-total">'+item.price+'</div></div>';
+        }).join('');
+        document.getElementById('cart-total').textContent = '₽' + sum;
+    }
+
+    function clearCart() { cart = []; updateCart(); }
+
+    function checkoutCart() {
+        var sum = cart.reduce(function(s,i){ return s+parseInt(i.price.replace(/[^\d]/g,''))*i.qty; }, 0);
+        document.getElementById('buy-title').textContent = 'Оформить заказ';
+        document.getElementById('buy-price').textContent = '₽' + sum;
+        closeModal('cart');
+        openModal('buy');
+    }
+
+    function setSort(type) {
+        ['popular','cheap','expensive'].forEach(function(s) {
+            document.getElementById('sort-'+s).style.opacity = s===type ? '1' : '0';
+        });
+        var grid = document.getElementById('cards-grid');
+        var cards = Array.from(grid.querySelectorAll('.card'));
+        cards.sort(function(a, b) {
+            var pa = parseInt(a.querySelector('.price').textContent.replace(/[^\d]/g,''));
+            var pb = parseInt(b.querySelector('.price').textContent.replace(/[^\d]/g,''));
+            var sa = parseInt(a.querySelector('.sold').textContent.replace(/[^\d]/g,''));
+            var sb = parseInt(b.querySelector('.sold').textContent.replace(/[^\d]/g,''));
+            if(type==='cheap') return pa - pb;
+            if(type==='expensive') return pb - pa;
+            return sb - sa;
+        });
+        cards.forEach(function(c){ grid.appendChild(c); });
+        closeModal('sort');
+        showToast('<i class="ti ti-check" style="color:#4ade80;margin-right:6px;"></i>Сортировка применена');
+    }
+
+    function copyDiscord() {
+        var text = 'HUISOSIKUSITUNITY';
+        if(navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(showCopied).catch(function(){ fallbackCopy(text); });
+        } else { fallbackCopy(text); }
+    }
+    function fallbackCopy(text) {
+        var el = document.createElement('textarea');
+        el.value = text; el.style.cssText = 'position:fixed;opacity:0;';
+        document.body.appendChild(el); el.focus(); el.select();
+        try { document.execCommand('copy'); } catch(e) {}
+        document.body.removeChild(el);
+        showCopied();
+    }
+    function showCopied() {
+        var btn = document.getElementById('dc-btn');
+        var txt = document.getElementById('dc-text');
+        if(txt) txt.textContent = 'Скопировано ✓';
+        if(btn) btn.style.background = '#3ba55d';
+        showToast('<i class="ti ti-check" style="color:#4ade80;margin-right:6px;"></i>Discord ник скопирован!');
+        setTimeout(function() {
+            if(txt) txt.textContent = 'HUISOSIKUSITUNITY';
+            if(btn) btn.style.background = '';
+        }, 2000);
+    }
+
+    function showToast(html) {
+        var t = document.createElement('div');
+        t.style.cssText = 'position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(8px);background:#1a1a1d;border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px 18px;font-size:13px;font-weight:600;color:#fff;z-index:9999;transition:all .22s;opacity:0;white-space:nowrap;display:flex;align-items:center;';
+        t.innerHTML = html;
+        document.body.appendChild(t);
+        requestAnimationFrame(function() {
+            t.style.opacity = '1';
+            t.style.transform = 'translateX(-50%) translateY(0)';
+        });
+        setTimeout(function() {
+            t.style.opacity = '0';
+            t.style.transform = 'translateX(-50%) translateY(8px)';
+            setTimeout(function(){ t.remove(); }, 300);
+        }, 2500);
+    }
+</script>
 </body>
 </html>
